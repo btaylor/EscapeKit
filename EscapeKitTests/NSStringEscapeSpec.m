@@ -1,0 +1,228 @@
+#import "Kiwi.h"
+#import "NSString+Escape.h"
+
+SPEC_BEGIN(NSStringEscapeSpec)
+
+describe(@"NSStringEscape", ^{
+    context(@"stringByEncodingHTMLEntities", ^{
+        it(@"encodes ISO-8859-1 reserved characters", ^{
+            [[[@"\"" stringByEncodingHTMLEntities] should] equal:@"&quot;"];
+            [[[@"'" stringByEncodingHTMLEntities] should] equal:@"&apos;"];
+            [[[@"&" stringByEncodingHTMLEntities] should] equal:@"&amp;"];
+            [[[@"<" stringByEncodingHTMLEntities] should] equal:@"&lt;"];
+            [[[@">" stringByEncodingHTMLEntities] should] equal:@"&gt;"];
+        });
+        
+        it(@"encodes ISO-8859-1 symbols", ^{
+            [[[@"¡" stringByEncodingHTMLEntities] should] equal:@"&iexcl;"];
+            [[[@"¢" stringByEncodingHTMLEntities] should] equal:@"&cent;"];
+            [[[@"£" stringByEncodingHTMLEntities] should] equal:@"&pound;"];
+            [[[@"¤" stringByEncodingHTMLEntities] should] equal:@"&curren;"];
+            [[[@"¥" stringByEncodingHTMLEntities] should] equal:@"&yen;"];
+            [[[@"¦" stringByEncodingHTMLEntities] should] equal:@"&brvbar;"];
+            [[[@"§" stringByEncodingHTMLEntities] should] equal:@"&sect;"];
+            [[[@"¨" stringByEncodingHTMLEntities] should] equal:@"&uml;"];
+            [[[@"©" stringByEncodingHTMLEntities] should] equal:@"&copy;"];
+            [[[@"ª" stringByEncodingHTMLEntities] should] equal:@"&ordf;"];
+            [[[@"«" stringByEncodingHTMLEntities] should] equal:@"&laquo;"];
+            [[[@"¬" stringByEncodingHTMLEntities] should] equal:@"&not;"];
+            [[[@"®" stringByEncodingHTMLEntities] should] equal:@"&reg;"];
+            [[[@"¯" stringByEncodingHTMLEntities] should] equal:@"&macr;"];
+            [[[@"°" stringByEncodingHTMLEntities] should] equal:@"&deg;"];
+            [[[@"±" stringByEncodingHTMLEntities] should] equal:@"&plusmn;"];
+            [[[@"²" stringByEncodingHTMLEntities] should] equal:@"&sup2;"];
+            [[[@"³" stringByEncodingHTMLEntities] should] equal:@"&sup3;"];
+            [[[@"´" stringByEncodingHTMLEntities] should] equal:@"&acute;"];
+            [[[@"µ" stringByEncodingHTMLEntities] should] equal:@"&micro;"];
+            [[[@"¶" stringByEncodingHTMLEntities] should] equal:@"&para;"];
+            [[[@"·" stringByEncodingHTMLEntities] should] equal:@"&middot;"];
+            [[[@"¸" stringByEncodingHTMLEntities] should] equal:@"&cedil;"];
+            [[[@"¹" stringByEncodingHTMLEntities] should] equal:@"&sup1;"];
+            [[[@"º" stringByEncodingHTMLEntities] should] equal:@"&ordm;"];
+            [[[@"»" stringByEncodingHTMLEntities] should] equal:@"&raquo;"];
+            [[[@"¼" stringByEncodingHTMLEntities] should] equal:@"&frac14;"];
+            [[[@"½" stringByEncodingHTMLEntities] should] equal:@"&frac12;"];
+            [[[@"¾" stringByEncodingHTMLEntities] should] equal:@"&frac34;"];
+            [[[@"¿" stringByEncodingHTMLEntities] should] equal:@"&iquest;"];
+            [[[@"×" stringByEncodingHTMLEntities] should] equal:@"&times;"];
+            [[[@"÷" stringByEncodingHTMLEntities] should] equal:@"&divide;"];
+        });
+        
+        it(@"encodes ISO-8559-1 characters", ^{
+            [[[@"À" stringByEncodingHTMLEntities] should] equal:@"&Agrave;"];
+            [[[@"Á" stringByEncodingHTMLEntities] should] equal:@"&Aacute;"];
+            [[[@"Â" stringByEncodingHTMLEntities] should] equal:@"&Acirc;"];
+            [[[@"Ã" stringByEncodingHTMLEntities] should] equal:@"&Atilde;"];
+            [[[@"Ä" stringByEncodingHTMLEntities] should] equal:@"&Auml;"];
+            [[[@"Å" stringByEncodingHTMLEntities] should] equal:@"&Aring;"];
+            [[[@"Æ" stringByEncodingHTMLEntities] should] equal:@"&AElig;"];
+            [[[@"Ç" stringByEncodingHTMLEntities] should] equal:@"&Ccedil;"];
+            [[[@"È" stringByEncodingHTMLEntities] should] equal:@"&Egrave;"];
+            [[[@"É" stringByEncodingHTMLEntities] should] equal:@"&Eacute;"];
+            [[[@"Ê" stringByEncodingHTMLEntities] should] equal:@"&Ecirc;"];
+            [[[@"Ë" stringByEncodingHTMLEntities] should] equal:@"&Euml;"];
+            [[[@"Ì" stringByEncodingHTMLEntities] should] equal:@"&Igrave;"];
+            [[[@"Í" stringByEncodingHTMLEntities] should] equal:@"&Iacute;"];
+            [[[@"Î" stringByEncodingHTMLEntities] should] equal:@"&Icirc;"];
+            [[[@"Ï" stringByEncodingHTMLEntities] should] equal:@"&Iuml;"];
+            [[[@"Ð" stringByEncodingHTMLEntities] should] equal:@"&ETH;"];
+            [[[@"Ñ" stringByEncodingHTMLEntities] should] equal:@"&Ntilde;"];
+            [[[@"Ò" stringByEncodingHTMLEntities] should] equal:@"&Ograve;"];
+            [[[@"Ó" stringByEncodingHTMLEntities] should] equal:@"&Oacute;"];
+            [[[@"Ô" stringByEncodingHTMLEntities] should] equal:@"&Ocirc;"];
+            [[[@"Õ" stringByEncodingHTMLEntities] should] equal:@"&Otilde;"];
+            [[[@"Ö" stringByEncodingHTMLEntities] should] equal:@"&Ouml;"];
+            [[[@"Ø" stringByEncodingHTMLEntities] should] equal:@"&Oslash;"];
+            [[[@"Ù" stringByEncodingHTMLEntities] should] equal:@"&Ugrave;"];
+            [[[@"Ú" stringByEncodingHTMLEntities] should] equal:@"&Uacute;"];
+            [[[@"Û" stringByEncodingHTMLEntities] should] equal:@"&Ucirc;"];
+            [[[@"Ü" stringByEncodingHTMLEntities] should] equal:@"&Uuml;"];
+            [[[@"Ý" stringByEncodingHTMLEntities] should] equal:@"&Yacute;"];
+            [[[@"Þ" stringByEncodingHTMLEntities] should] equal:@"&THORN;"];
+            [[[@"ß" stringByEncodingHTMLEntities] should] equal:@"&szlig;"];
+            [[[@"à" stringByEncodingHTMLEntities] should] equal:@"&agrave;"];
+            [[[@"á" stringByEncodingHTMLEntities] should] equal:@"&aacute;"];
+            [[[@"â" stringByEncodingHTMLEntities] should] equal:@"&acirc;"];
+            [[[@"ã" stringByEncodingHTMLEntities] should] equal:@"&atilde;"];
+            [[[@"ä" stringByEncodingHTMLEntities] should] equal:@"&auml;"];
+            [[[@"å" stringByEncodingHTMLEntities] should] equal:@"&aring;"];
+            [[[@"æ" stringByEncodingHTMLEntities] should] equal:@"&aelig;"];
+            [[[@"ç" stringByEncodingHTMLEntities] should] equal:@"&ccedil;"];
+            [[[@"è" stringByEncodingHTMLEntities] should] equal:@"&egrave;"];
+            [[[@"é" stringByEncodingHTMLEntities] should] equal:@"&eacute;"];
+            [[[@"ê" stringByEncodingHTMLEntities] should] equal:@"&ecirc;"];
+            [[[@"ë" stringByEncodingHTMLEntities] should] equal:@"&euml;"];
+            [[[@"ì" stringByEncodingHTMLEntities] should] equal:@"&igrave;"];
+            [[[@"í" stringByEncodingHTMLEntities] should] equal:@"&iacute;"];
+            [[[@"î" stringByEncodingHTMLEntities] should] equal:@"&icirc;"];
+            [[[@"ï" stringByEncodingHTMLEntities] should] equal:@"&iuml;"];
+            [[[@"ð" stringByEncodingHTMLEntities] should] equal:@"&eth;"];
+            [[[@"ñ" stringByEncodingHTMLEntities] should] equal:@"&ntilde;"];
+            [[[@"ò" stringByEncodingHTMLEntities] should] equal:@"&ograve;"];
+            [[[@"ó" stringByEncodingHTMLEntities] should] equal:@"&oacute;"];
+            [[[@"ô" stringByEncodingHTMLEntities] should] equal:@"&ocirc;"];
+            [[[@"õ" stringByEncodingHTMLEntities] should] equal:@"&otilde;"];
+            [[[@"ö" stringByEncodingHTMLEntities] should] equal:@"&ouml;"];
+            [[[@"ø" stringByEncodingHTMLEntities] should] equal:@"&oslash;"];
+            [[[@"ù" stringByEncodingHTMLEntities] should] equal:@"&ugrave;"];
+            [[[@"ú" stringByEncodingHTMLEntities] should] equal:@"&uacute;"];
+            [[[@"û" stringByEncodingHTMLEntities] should] equal:@"&ucirc;"];
+            [[[@"ü" stringByEncodingHTMLEntities] should] equal:@"&uuml;"];
+            [[[@"ý" stringByEncodingHTMLEntities] should] equal:@"&yacute;"];
+            [[[@"þ" stringByEncodingHTMLEntities] should] equal:@"&thorn;"];
+            [[[@"ÿ" stringByEncodingHTMLEntities] should] equal:@"&yuml;"];
+        });
+    });
+    
+    context(@"stringByDecodingHTMLEntities", ^{
+        it(@"decodes ISO-8995-1 reserved characters", ^{
+            [[[@"&quot;" stringByDecodingHTMLEntities] should] equal:@"\""];
+            [[[@"&apos;" stringByDecodingHTMLEntities] should] equal:@"'"];
+            [[[@"&amp;" stringByDecodingHTMLEntities] should] equal:@"&"];
+            [[[@"&lt;" stringByDecodingHTMLEntities] should] equal:@"<"];
+            [[[@"&gt;" stringByDecodingHTMLEntities] should] equal:@">"];
+        });
+        
+        it(@"decodes ISO-8995-1 symbols", ^{
+            [[[@"&iexcl;" stringByDecodingHTMLEntities] should] equal:@"¡"];
+            [[[@"&cent;" stringByDecodingHTMLEntities] should] equal:@"¢"];
+            [[[@"&pound;" stringByDecodingHTMLEntities] should] equal:@"£"];
+            [[[@"&curren;" stringByDecodingHTMLEntities] should] equal:@"¤"];
+            [[[@"&yen;" stringByDecodingHTMLEntities] should] equal:@"¥"];
+            [[[@"&brvbar;" stringByDecodingHTMLEntities] should] equal:@"¦"];
+            [[[@"&sect;" stringByDecodingHTMLEntities] should] equal:@"§"];
+            [[[@"&uml;" stringByDecodingHTMLEntities] should] equal:@"¨"];
+            [[[@"&copy;" stringByDecodingHTMLEntities] should] equal:@"©"];
+            [[[@"&ordf;" stringByDecodingHTMLEntities] should] equal:@"ª"];
+            [[[@"&laquo;" stringByDecodingHTMLEntities] should] equal:@"«"];
+            [[[@"&not;" stringByDecodingHTMLEntities] should] equal:@"¬"];
+            [[[@"&reg;" stringByDecodingHTMLEntities] should] equal:@"®"];
+            [[[@"&macr;" stringByDecodingHTMLEntities] should] equal:@"¯"];
+            [[[@"&deg;" stringByDecodingHTMLEntities] should] equal:@"°"];
+            [[[@"&plusmn;" stringByDecodingHTMLEntities] should] equal:@"±"];
+            [[[@"&sup2;" stringByDecodingHTMLEntities] should] equal:@"²"];
+            [[[@"&sup3;" stringByDecodingHTMLEntities] should] equal:@"³"];
+            [[[@"&acute;" stringByDecodingHTMLEntities] should] equal:@"´"];
+            [[[@"&micro;" stringByDecodingHTMLEntities] should] equal:@"µ"];
+            [[[@"&para;" stringByDecodingHTMLEntities] should] equal:@"¶"];
+            [[[@"&middot;" stringByDecodingHTMLEntities] should] equal:@"·"];
+            [[[@"&cedil;" stringByDecodingHTMLEntities] should] equal:@"¸"];
+            [[[@"&sup1;" stringByDecodingHTMLEntities] should] equal:@"¹"];
+            [[[@"&ordm;" stringByDecodingHTMLEntities] should] equal:@"º"];
+            [[[@"&raquo;" stringByDecodingHTMLEntities] should] equal:@"»"];
+            [[[@"&frac14;" stringByDecodingHTMLEntities] should] equal:@"¼"];
+            [[[@"&frac12;" stringByDecodingHTMLEntities] should] equal:@"½"];
+            [[[@"&frac34;" stringByDecodingHTMLEntities] should] equal:@"¾"];
+            [[[@"&iquest;" stringByDecodingHTMLEntities] should] equal:@"¿"];
+            [[[@"&times;" stringByDecodingHTMLEntities] should] equal:@"×"];
+            [[[@"&divide;" stringByDecodingHTMLEntities] should] equal:@"÷"]; 
+        });
+        
+        it(@"decodes ISO-8995-1 characters", ^{
+            [[[@"&Agrave;" stringByDecodingHTMLEntities] should] equal:@"À"];
+            [[[@"&Aacute;" stringByDecodingHTMLEntities] should] equal:@"Á"];
+            [[[@"&Acirc;" stringByDecodingHTMLEntities] should] equal:@"Â"];
+            [[[@"&Atilde;" stringByDecodingHTMLEntities] should] equal:@"Ã"];
+            [[[@"&Auml;" stringByDecodingHTMLEntities] should] equal:@"Ä"];
+            [[[@"&Aring;" stringByDecodingHTMLEntities] should] equal:@"Å"];
+            [[[@"&AElig;" stringByDecodingHTMLEntities] should] equal:@"Æ"];
+            [[[@"&Ccedil;" stringByDecodingHTMLEntities] should] equal:@"Ç"];
+            [[[@"&Egrave;" stringByDecodingHTMLEntities] should] equal:@"È"];
+            [[[@"&Eacute;" stringByDecodingHTMLEntities] should] equal:@"É"];
+            [[[@"&Ecirc;" stringByDecodingHTMLEntities] should] equal:@"Ê"];
+            [[[@"&Euml;" stringByDecodingHTMLEntities] should] equal:@"Ë"];
+            [[[@"&Igrave;" stringByDecodingHTMLEntities] should] equal:@"Ì"];
+            [[[@"&Iacute;" stringByDecodingHTMLEntities] should] equal:@"Í"];
+            [[[@"&Icirc;" stringByDecodingHTMLEntities] should] equal:@"Î"];
+            [[[@"&Iuml;" stringByDecodingHTMLEntities] should] equal:@"Ï"];
+            [[[@"&ETH;" stringByDecodingHTMLEntities] should] equal:@"Ð"];
+            [[[@"&Ntilde;" stringByDecodingHTMLEntities] should] equal:@"Ñ"];
+            [[[@"&Ograve;" stringByDecodingHTMLEntities] should] equal:@"Ò"];
+            [[[@"&Oacute;" stringByDecodingHTMLEntities] should] equal:@"Ó"];
+            [[[@"&Ocirc;" stringByDecodingHTMLEntities] should] equal:@"Ô"];
+            [[[@"&Otilde;" stringByDecodingHTMLEntities] should] equal:@"Õ"];
+            [[[@"&Ouml;" stringByDecodingHTMLEntities] should] equal:@"Ö"];
+            [[[@"&Oslash;" stringByDecodingHTMLEntities] should] equal:@"Ø"];
+            [[[@"&Ugrave;" stringByDecodingHTMLEntities] should] equal:@"Ù"];
+            [[[@"&Uacute;" stringByDecodingHTMLEntities] should] equal:@"Ú"];
+            [[[@"&Ucirc;" stringByDecodingHTMLEntities] should] equal:@"Û"];
+            [[[@"&Uuml;" stringByDecodingHTMLEntities] should] equal:@"Ü"];
+            [[[@"&Yacute;" stringByDecodingHTMLEntities] should] equal:@"Ý"];
+            [[[@"&THORN;" stringByDecodingHTMLEntities] should] equal:@"Þ"];
+            [[[@"&szlig;" stringByDecodingHTMLEntities] should] equal:@"ß"];
+            [[[@"&agrave;" stringByDecodingHTMLEntities] should] equal:@"à"];
+            [[[@"&aacute;" stringByDecodingHTMLEntities] should] equal:@"á"];
+            [[[@"&acirc;" stringByDecodingHTMLEntities] should] equal:@"â"];
+            [[[@"&atilde;" stringByDecodingHTMLEntities] should] equal:@"ã"];
+            [[[@"&auml;" stringByDecodingHTMLEntities] should] equal:@"ä"];
+            [[[@"&aring;" stringByDecodingHTMLEntities] should] equal:@"å"];
+            [[[@"&aelig;" stringByDecodingHTMLEntities] should] equal:@"æ"];
+            [[[@"&ccedil;" stringByDecodingHTMLEntities] should] equal:@"ç"];
+            [[[@"&egrave;" stringByDecodingHTMLEntities] should] equal:@"è"];
+            [[[@"&eacute;" stringByDecodingHTMLEntities] should] equal:@"é"];
+            [[[@"&ecirc;" stringByDecodingHTMLEntities] should] equal:@"ê"];
+            [[[@"&euml;" stringByDecodingHTMLEntities] should] equal:@"ë"];
+            [[[@"&igrave;" stringByDecodingHTMLEntities] should] equal:@"ì"];
+            [[[@"&iacute;" stringByDecodingHTMLEntities] should] equal:@"í"];
+            [[[@"&icirc;" stringByDecodingHTMLEntities] should] equal:@"î"];
+            [[[@"&iuml;" stringByDecodingHTMLEntities] should] equal:@"ï"];
+            [[[@"&eth;" stringByDecodingHTMLEntities] should] equal:@"ð"];
+            [[[@"&ntilde;" stringByDecodingHTMLEntities] should] equal:@"ñ"];
+            [[[@"&ograve;" stringByDecodingHTMLEntities] should] equal:@"ò"];
+            [[[@"&oacute;" stringByDecodingHTMLEntities] should] equal:@"ó"];
+            [[[@"&ocirc;" stringByDecodingHTMLEntities] should] equal:@"ô"];
+            [[[@"&otilde;" stringByDecodingHTMLEntities] should] equal:@"õ"];
+            [[[@"&ouml;" stringByDecodingHTMLEntities] should] equal:@"ö"];
+            [[[@"&oslash;" stringByDecodingHTMLEntities] should] equal:@"ø"];
+            [[[@"&ugrave;" stringByDecodingHTMLEntities] should] equal:@"ù"];
+            [[[@"&uacute;" stringByDecodingHTMLEntities] should] equal:@"ú"];
+            [[[@"&ucirc;" stringByDecodingHTMLEntities] should] equal:@"û"];
+            [[[@"&uuml;" stringByDecodingHTMLEntities] should] equal:@"ü"];
+            [[[@"&yacute;" stringByDecodingHTMLEntities] should] equal:@"ý"];
+            [[[@"&thorn;" stringByDecodingHTMLEntities] should] equal:@"þ"];
+            [[[@"&yuml;" stringByDecodingHTMLEntities] should] equal:@"ÿ"];
+        });
+    });
+});
+
+SPEC_END
